@@ -1,2 +1,3 @@
 etc/nginx.conf
 web/img/*
+web/locations.json
