@@ -1,8 +1,24 @@
 <?php
-require_once 'SimpleImage.php';
+//
+//
+// CONFIGURATION
+// 
+// 
 
+// Path where your photos are located
 define('ORIGINAL_PATH', 'original_img/');
+
+// Path where thumbnails will be generated
 define('WEB_IMG_PATH', 'web/img/');
+
+// Size of thumbnail
+define('IMG_WIDTH', 300);
+
+
+//
+// END OF CONFIGURATION
+//
+require_once 'SimpleImage.php';
 
 $files = scandir(ORIGINAL_PATH);
 
@@ -45,7 +61,7 @@ foreach ($files as $fileName) {
 	//clog($fileName, 'Generating thumbnail');
 	$image = new SimpleImage();
 	$image->load( ORIGINAL_PATH . $fileName);
-	$image->resizeToWidth(250);
+	$image->resizeToWidth(IMG_WIDTH);
 	$image->save(WEB_IMG_PATH . $fileName);
 }
 
