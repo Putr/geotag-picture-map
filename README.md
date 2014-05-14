@@ -7,6 +7,9 @@ Only problem - there was no easy way of showing a selection of your images on yo
 
 The app takes in images, parses the geotag data, creates thumbnails and show them as pins with popups on a google map.
 
+Example:
+http://map.andree.si/
+
 Deployment
 ----------
 
@@ -14,19 +17,23 @@ Deployment
 
 2. Copy nginx.conf
 
+    ```
     cp nginx.conf.dist nginx.conf
+    ```
 
-3. Edit nginx.conf file to suit your needs (paths and server_name)
+3. Edit `nginx.conf` file to suit your needs (paths and server_name)
 
-4. Add images to original_img folder
+4. Add images to `original_img` folder
 
 5. Run process_imgs.php file - this will generate the needed files
 
-    php process_imgs.php
+  ```
+  php process_imgs.php
+  ```
   
 6. Open in browser (I know, the hard part)
 
-You can use the page as is or embed it into a nother page. If you wish you can change the HTML in web/index.html .
+You can use the page as is or embed it into a nother page. If you wish you can change the HTML in `web/index.html` .
 
 Debuging
 --------
