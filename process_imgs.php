@@ -51,8 +51,8 @@ foreach ($files as $fileName) {
 	$long = $exifData['GPSLongitude'];
 
 	$data[] = array(
-		'lat' => $lat[0] + ($lat[1]/60) + (($lat[2]/100)/3600),
-		'lng' => $long[0] + ($long[1]/60) + (($long[2]/100)/3600),
+		'lat' => compileCoordinate($lat),
+		'lng' => compileCoordinate($long),
 		'img' => $fileName
 	);
 	//clog($fileName, 'Found coordinates');
@@ -70,6 +70,20 @@ $data = json_encode($data);
 file_put_contents('web/locations.json', $data);
 
 clog('', sprintf('Found %s images, %s had errors so only %s were processed', $count['total'], $count['err'], $count['total'] - $count['err']));
+
+
+function compileCoordinate($data) {
+
+	$coords = array();
+
+	foreach ($data as $key => $val) {
+		$t = explode('/', $val);
+		$coords[$key] = $t[0] / $t[1];
+	}
+
+	return $coords[0] + ($coords[1]/60) + (($coords[2])/3600);
+
+}
 
 function clog($filename, $msg) {
 	echo sprintf('[%s] %s %s', $filename, $msg, PHP_EOL);
